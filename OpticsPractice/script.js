@@ -80,15 +80,16 @@ function startGame(){
 	}
 
 	pointer = new Pointer(myGameArea.canvas.width * 0.2 * (5.0 / 8.0) * 0.5);
-	pointer.setY(pointerY);
+	//pointer.setY(pointerY);
 	pointer.randomize();
-	window.addEventListener('resize', function(event){
+	/*window.addEventListener('resize', function(event){
 		if (!final) {
 			pointer.setY(pointerY);
 			pointer.x = 10 + myGameArea.canvas.width * 0.7 - pointer.length;
 			
 		}
 	});
+	*/
 	
 	
 	setInterval(incTimer, 1000);
