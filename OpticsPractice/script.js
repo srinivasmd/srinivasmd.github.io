@@ -81,7 +81,7 @@ function startGame(){
 
 	pointer = new Pointer(myGameArea.canvas.width * 0.2 * (5.0 / 8.0) * 0.5);
 	pointer.setY(pointerY);
-
+	pointer.randomize();
 	window.addEventListener('resize', function(event){
 		if (!final) {
 			pointer.setY(pointerY);
@@ -89,7 +89,7 @@ function startGame(){
 			
 		}
 	});
-	pointer.randomize();
+	
 	
 	setInterval(incTimer, 1000);
 }
@@ -383,6 +383,10 @@ function Pointer(y){
 
 	this.setY = function(y){
 		this.y = y * (myGameArea.canvas.width * 0.7 * (5.0 / 8.0) - this.width) + 10.0;
+	}
+	
+	this.randomize = function(){
+		this.y = Math.random() * (myGameArea.canvas.width * 0.7 * (5.0 / 8.0) - this.width) + 10.0;
 	}
 }
 
