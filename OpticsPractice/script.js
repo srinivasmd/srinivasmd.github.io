@@ -89,6 +89,7 @@ function startGame(){
 			
 		}
 	});
+	pointer.randomize();
 	
 	setInterval(incTimer, 1000);
 }
