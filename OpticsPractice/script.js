@@ -80,15 +80,17 @@ function startGame(){
 	}
 
 	pointer = new Pointer(myGameArea.canvas.width * 0.2 * (5.0 / 8.0) * 0.5);
-	pointer.setY(pointerY);
-
-	window.addEventListener('resize', function(event){
+	//pointer.setY(pointerY);
+	pointer.randomize();
+	/*window.addEventListener('resize', function(event){
 		if (!final) {
 			pointer.setY(pointerY);
 			pointer.x = 10 + myGameArea.canvas.width * 0.7 - pointer.length;
 			
 		}
 	});
+	*/
+	
 	
 	setInterval(incTimer, 1000);
 }
@@ -192,7 +194,6 @@ var myGameArea = {
         this.canvas.width = window.innerWidth * 0.7;
         this.canvas.height = window.innerHeight * 0.7;
         this.context = this.canvas.getContext("2d");
-		
         document.body.insertBefore(this.canvas, document.body.childNodes[0]);
         this.interval = setInterval(updateGameArea, 20);
         window.addEventListener('keydown', function (e) {
@@ -383,6 +384,10 @@ function Pointer(y){
 
 	this.setY = function(y){
 		this.y = y * (myGameArea.canvas.width * 0.7 * (5.0 / 8.0) - this.width) + 10.0;
+	}
+	
+	this.randomize = function(){
+		this.y = Math.random() * (myGameArea.canvas.width * 0.7 * (5.0 / 8.0) - this.width) + 10.0;
 	}
 }
 
@@ -650,31 +655,6 @@ function setGrid(){
 		myGameArea.context.lineTo(10 + myGameArea.canvas.width * 0.7, (10 + myGameArea.canvas.width * 0.7 * (5.0 / 8.0)) * (i / 35.0));
 		myGameArea.context.stroke();
 	}
-	
-	// Determine division sizes
-        const verticalDivisionSize = (myGameArea.canvas.width * 0.7) / 3;
-        const horizontalDivisionSize = (myGameArea.canvas.height ) / 3;
-
-		myGameArea.context.strokeStyle = "black";
-        myGameArea.context.lineWidth = 1;
-		// Draw vertical grid lines
-            for (let i = 1; i < 3; i++) {
-                let x = i * verticalDivisionSize;
-                myGameArea.context.beginPath();
-                myGameArea.context.moveTo(x, 10.0);
-                myGameArea.context.lineTo(x, 10 + myGameArea.canvas.width * 0.7 * (5.0 / 8.0));
-                myGameArea.context.stroke();
-            }
-		/*
-            // Draw horizontal grid lines
-            for (let i = 1; i < 3; i++) {
-                let y = i * horizontalDivisionSize;
-                myGameArea.context.beginPath();
-                myGameArea.context.moveTo(10.0, y);
-                myGameArea.context.lineTo(10 + myGameArea.canvas.width * 0.7, y);
-                myGameArea.context.stroke();
-            }
-		*/
 }
 
 function updateGameArea() {
